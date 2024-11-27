@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { RBACProvider } from './context/RBACContext';
 
-function App() {
+import UsersPage from './pages/UsersPage';
+import RolesPage from './pages/RolesPage';
+import DashboardPage from './pages/DashBoardPage';
+
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RBACProvider>
+      <Router>
+        <Routes>
+        
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/roles" element={<RolesPage />} />
+        </Routes>
+      </Router>
+    </RBACProvider>
   );
-}
+};
 
 export default App;
