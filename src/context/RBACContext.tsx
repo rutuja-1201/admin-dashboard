@@ -29,7 +29,11 @@ const RBACContext = createContext<RBACContextType | undefined>(undefined);
 
 export const RBACProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [users, setUsers] = useState<User[]>([]);
-  const [roles, setRoles] = useState<Role[]>([]);
+  const [roles, setRoles] = useState<Role[]>([
+    { id: 1, name: 'Admin', permissions: ['Read', 'Write', 'Delete'] },
+    { id: 2, name: 'Editor', permissions: ['Read', 'Write'] },
+  ]);
+  
 
   const addUser = (user: User) => setUsers([...users, user]);
   const updateUser = (id: number, updatedUser: Partial<User>) => {

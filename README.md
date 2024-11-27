@@ -1,46 +1,74 @@
-# Getting Started with Create React App
+# RBAC Admin Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Role-Based Access Control (RBAC) Admin Dashboard built using **React**, **TypeScript**, and **Material-UI**. The dashboard enables administrators to efficiently manage users, roles, and permissions with an intuitive and responsive interface. This application follows best practices in design, development, and security to ensure a seamless user experience.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### User Management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- View, add, edit, and delete users.
+- Assign roles to users and toggle their status (Active/Inactive).
+- Filter and sort the users column for easier management.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Role Management
 
-### `npm test`
+- Create, edit, and delete roles.
+- Assign permissions (Read, Write, Delete) or define custom attributes for each role.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Dynamic Permissions
 
-### `npm run build`
+- Assign and modify permissions dynamically for roles.
+- Display permissions in a clear, intuitive layout.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
 
-### `npm run eject`
+- **React**: A library for building component-based user interfaces.
+- **TypeScript**: A superset of JavaScript providing type safety and maintainability.
+- **Material-UI**: A React component library for fast and consistent UI development.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### State Management
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **React Context**: For managing global state (e.g., user data, roles, permissions).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Mock API
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Axios**: For handling API requests and responses.
+- **Mock Service Worker (MSW)**: For mocking backend APIs during development and testing.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Prerequisites
+
+Ensure you have the following installed on your system:
+
+- **Node.js** (v14 or above)
+- **npm** or **yarn**
+
+---
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/rutuja-1201/admin-dashboard.git
+
+   cd admin-dashboard
+   ```
+
+npm install
+
+# or
+
+yarn install
+
+npm start
+# or
+yarn start

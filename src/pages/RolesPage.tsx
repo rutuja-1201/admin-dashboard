@@ -1,45 +1,59 @@
-import React, { useState } from 'react';
-import { Button } from '@mui/material';
-import AddRoleModal from '../components/RoleManagement/AddRoleModal';
-import EditRoleModal from '../components/RoleManagement/EditRoleModal';
-import RoleTable from '../components/RoleManagement/RoleTable';
-
-interface Role {
-  id: number;
-  name: string;
-  permissions: string[];
-}
+import React, { useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import AddRoleModal from "../components/RoleManagement/AddRoleModal";
+import EditRoleModal from "../components/RoleManagement/EditRoleModal";
+import RoleTable from "../components/RoleManagement/RoleTable";
+import { useRBAC } from "../context/RBACContext";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const RolesPage: React.FC = () => {
-  const [roles, setRoles] = useState<Role[]>([
-    { id: 1, name: 'Admin', permissions: ['Read', 'Write', 'Delete'] },
-    { id: 2, name: 'Editor', permissions: ['Read', 'Write'] },
-  ]);
-
+  const { roles, addRole, updateRole, deleteRole } = useRBAC();
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedRoleId, setSelectedRoleId] = useState<number | null>(null);
 
-  const handleAddRole = (newRole: Role) => {
-    setRoles((prevRoles) => [...prevRoles, newRole]);
+  const handleAddRole = (newRole: { name: string; permissions: string[] }) => {
+    const id = roles.length ? Math.max(...roles.map((role) => role.id)) + 1 : 1;
+    addRole({ id, ...newRole });
+    setOpenAddModal(false);
   };
 
-  const handleUpdateRole = (updatedRole: Role) => {
-    setRoles((prevRoles) =>
-      prevRoles.map((role) => (role.id === updatedRole.id ? updatedRole : role))
-    );
-  };
-
-  const handleDeleteRole = (roleId: number) => {
-    setRoles((prevRoles) => prevRoles.filter((role) => role.id !== roleId));
+  const handleUpdateRole = (updatedRole: {
+    name?: string;
+    permissions?: string[];
+  }) => {
+    if (selectedRoleId !== null) {
+      updateRole(selectedRoleId, updatedRole);
+      setOpenEditModal(false);
+    }
   };
 
   return (
     <div>
-      <h1>Role Management</h1>
-      <Button variant="contained" onClick={() => setOpenAddModal(true)}>
-        Add Role
-      </Button>
+      <Box sx={{ padding: 3 }}>
+        <Typography variant="h4" gutterBottom>
+          Role Management
+        </Typography>
+
+        <Box sx={{ paddingTop: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddCircleIcon />}
+            onClick={() => setOpenAddModal(true)}
+            sx={{
+              textTransform: "none",
+              boxShadow: 2,
+              "&:hover": {
+                boxShadow: 4,
+              },
+              padding: "10px 20px",
+            }}
+          >
+            Add Role
+          </Button>
+        </Box>
+      </Box>
       <AddRoleModal
         open={openAddModal}
         onClose={() => setOpenAddModal(false)}
@@ -60,7 +74,7 @@ const RolesPage: React.FC = () => {
           setSelectedRoleId(roleId);
           setOpenEditModal(true);
         }}
-        onDelete={handleDeleteRole}
+        onDelete={(roleId: number) => deleteRole(roleId)}
       />
     </div>
   );

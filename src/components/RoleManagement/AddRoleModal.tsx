@@ -23,7 +23,7 @@ const AddRoleModal: React.FC<AddRoleModalProps> = ({ open, onClose, onAdd }) => 
 
   const handleSubmit = () => {
     const newRole = {
-      id: Date.now(), // Unique ID
+      id: Date.now(), 
       name: roleName,
       permissions: selectedPermissions,
     };
